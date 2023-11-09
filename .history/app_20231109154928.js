@@ -28,7 +28,7 @@ try {
     partnerId: "NODEMAN",
     authKey:"test123",
     loggingEnabled:true,
-    app:app
+    app
   });
   app.use(ShortloopSDK.capture());
   logger.info('ShortloopSDK initialized successfully');

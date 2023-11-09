@@ -27,8 +27,7 @@ try {
     environment: "your-environment",
     partnerId: "NODEMAN",
     authKey:"test123",
-    loggingEnabled:true,
-    app:app
+    loggingEnabled:true
   });
   app.use(ShortloopSDK.capture());
   logger.info('ShortloopSDK initialized successfully');

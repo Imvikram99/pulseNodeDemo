@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 19,
             "patches": [
                 {
                     "date": 1694283343302,
@@ -68,6 +68,22 @@
                 {
                     "date": 1699523672677,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     team:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n     apiKey:\"test123\",\n-    loggingEnabled:\"true\"\n+    loggingEnabled:true\"\n   });\n   app.use(ShortloopSDK.capture());\n   logger.info('ShortloopSDK initialized successfully');\n } catch (error) {\n"
+                },
+                {
+                    "date": 1699524738494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,10 @@\n     applicationName: \"service-name\",\n     team:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n-    apiKey:\"test123\",\n-    loggingEnabled:true\"\n+    authKey:\"test123\",\n+    loggingEnabled:true\n   });\n   app.use(ShortloopSDK.capture());\n   logger.info('ShortloopSDK initialized successfully');\n } catch (error) {\n"
+                },
+                {
+                    "date": 1699524744208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n try {\n   ShortloopSDK.init({\n     url: \"http://localhost:8080\",\n     applicationName: \"service-name\",\n-    team:\"team1\",\n+    teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n     authKey:\"test123\",\n     loggingEnabled:true\n"
+                },
+                {
+                    "date": 1699525166294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,10 @@\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n     authKey:\"test123\",\n-    loggingEnabled:true\n+    loggingEnabled:true,\n+    \n   });\n   app.use(ShortloopSDK.capture());\n   logger.info('ShortloopSDK initialized successfully');\n } catch (error) {\n"
+                },
+                {
+                    "date": 1699525171845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n     authKey:\"test123\",\n     loggingEnabled:true,\n-    \n+    app:app\n   });\n   app.use(ShortloopSDK.capture());\n   logger.info('ShortloopSDK initialized successfully');\n } catch (error) {\n"
                 }
             ],
             "date": 1694283343302,

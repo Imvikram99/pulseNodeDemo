@@ -23,12 +23,11 @@ try {
   ShortloopSDK.init({
     url: "http://localhost:8080",
     applicationName: "service-name",
-    teamName:"team1",
+    team:"team1",
     environment: "your-environment",
     partnerId: "NODEMAN",
     authKey:"test123",
-    loggingEnabled:true,
-    app:app
+    loggingEnabled:true
   });
   app.use(ShortloopSDK.capture());
   logger.info('ShortloopSDK initialized successfully');
