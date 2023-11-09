@@ -22,7 +22,7 @@ app.use(express.text());
 try {
   ApiMonitorSDK.init({
     url: "http://localhost:8080",
-    applicationName: "service-name2",
+    applicationName: "service-name1",
     teamName:"team1",
     environment: "your-environment",
     partnerId: "NODEMAN",
@@ -33,7 +33,7 @@ try {
   app.use(ApiMonitorSDK.capture());
   logger.info('ApiMonitorSDK initialized successfully');
 } catch (error) {
-  logger.error(`ApiMonitorSDK initialization failed: ${error}`);
+  logger.error(`ShortloopSDK initialization failed: ${error}`);
 }
 
 app.get('/', (req, res) => {

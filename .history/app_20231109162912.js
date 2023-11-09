@@ -1,5 +1,5 @@
 const express = require('express');
-const { ApiMonitorSDK } = require('ajent');
+const { ShortloopSDK } = require('ajent');
  // Importing your local npm package
 const winston = require('winston'); // For logging
 
@@ -22,7 +22,7 @@ app.use(express.text());
 try {
   ApiMonitorSDK.init({
     url: "http://localhost:8080",
-    applicationName: "service-name2",
+    applicationName: "service-name1",
     teamName:"team1",
     environment: "your-environment",
     partnerId: "NODEMAN",
@@ -31,9 +31,9 @@ try {
     app:app
   });
   app.use(ApiMonitorSDK.capture());
-  logger.info('ApiMonitorSDK initialized successfully');
+  logger.info('ShortloopSDK initialized successfully');
 } catch (error) {
-  logger.error(`ApiMonitorSDK initialization failed: ${error}`);
+  logger.error(`ShortloopSDK initialization failed: ${error}`);
 }
 
 app.get('/', (req, res) => {

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 19,
+            "activePatchIndex": 24,
             "patches": [
                 {
                     "date": 1694283343302,
@@ -84,6 +84,26 @@
                 {
                     "date": 1699525171845,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n     authKey:\"test123\",\n     loggingEnabled:true,\n-    \n+    app:app\n   });\n   app.use(ShortloopSDK.capture());\n   logger.info('ShortloopSDK initialized successfully');\n } catch (error) {\n"
+                },
+                {
+                    "date": 1699527233341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n // Initialize your local npm package\n try {\n   ShortloopSDK.init({\n     url: \"http://localhost:8080\",\n-    applicationName: \"service-name\",\n+    applicationName: \"service-name1\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n     authKey:\"test123\",\n"
+                },
+                {
+                    "date": 1699527548062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n app.use(express.text());\n \n // Initialize your local npm package\n try {\n-  ShortloopSDK.init({\n+  ApiMonitorSDK.init({\n     url: \"http://localhost:8080\",\n     applicationName: \"service-name1\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n"
+                },
+                {
+                    "date": 1699527560209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n const express = require('express');\n-const { ShortloopSDK } = require('ajent');\n+const { ApiMonitorSDK } = require('ajent');\n  // Importing your local npm package\n const winston = require('winston'); // For logging\n \n // Initialize winston logger\n@@ -29,9 +29,9 @@\n     authKey:\"test123\",\n     loggingEnabled:true,\n     app:app\n   });\n-  app.use(ShortloopSDK.capture());\n+  app.use(ApiMonitorSDK.capture());\n   logger.info('ShortloopSDK initialized successfully');\n } catch (error) {\n   logger.error(`ShortloopSDK initialization failed: ${error}`);\n }\n"
+                },
+                {
+                    "date": 1699527569617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n     loggingEnabled:true,\n     app:app\n   });\n   app.use(ApiMonitorSDK.capture());\n-  logger.info('ShortloopSDK initialized successfully');\n+  logger.info('ApiMonitorSDK initialized successfully');\n } catch (error) {\n   logger.error(`ShortloopSDK initialization failed: ${error}`);\n }\n \n"
+                },
+                {
+                    "date": 1699527589989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n // Initialize your local npm package\n try {\n   ApiMonitorSDK.init({\n     url: \"http://localhost:8080\",\n-    applicationName: \"service-name1\",\n+    applicationName: \"service-name2\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n     authKey:\"test123\",\n@@ -32,9 +32,9 @@\n   });\n   app.use(ApiMonitorSDK.capture());\n   logger.info('ApiMonitorSDK initialized successfully');\n } catch (error) {\n-  logger.error(`ShortloopSDK initialization failed: ${error}`);\n+  logger.error(`ApiMonitorSDK initialization failed: ${error}`);\n }\n \n app.get('/', (req, res) => {\n   res.send('Hello, world!');\n"
                 }
             ],
             "date": 1694283343302,
