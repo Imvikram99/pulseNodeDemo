@@ -43,20 +43,6 @@ app.get('/2', (req, res) => {
   res.send('Hello, world2!');
 });
 
-app.get('/greet/:name', (req, res) => {
-  const name = req.params.name; // Path variable
-  const title = req.query.title; // Query parameter, e.g., ?title=Mr.
-
-  let greeting = `Hello, ${name}`;
-
-  if (title) {
-      greeting = `Hello, ${title} ${name}`;
-  }
-
-  res.send(greeting);
-});
-
-
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

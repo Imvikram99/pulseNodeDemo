@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apipulse-node": "^1.0.1",
     "express": "^4.18.2",
     "winston": "^3.10.0"
   }
