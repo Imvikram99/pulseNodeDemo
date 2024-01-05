@@ -193,9 +193,6 @@ app.get('/ecommerce/product/:productId', (req, res) => {
   res.json(product);
 });
 
-app.get('/ecommerce/products', (req, res) => {
-  res.json(Array.from(products.values()));
-});
 
 
 app.get('/greet/:name', (req, res) => {

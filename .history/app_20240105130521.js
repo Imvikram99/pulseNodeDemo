@@ -1,5 +1,5 @@
 const express = require('express');
-const { ShortloopSDK } = require('ajent');
+const { ApiMonitorSDK } = require('apipulse-node');
  // Importing your local npm package
 const winston = require('winston'); // For logging
 
@@ -20,25 +20,43 @@ app.use(express.text());
 
 // Initialize your local npm package
 try {
-  ShortloopSDK.init({
-    url: "http://localhost:8080",
-    applicationName: "service-name",
+  ApiMonitorSDK.init({
+    url: "http://alb-test1-1116885660.ap-south-1.elb.amazonaws.com:8080",
+    applicationName: "service-name3",
     teamName:"team1",
     environment: "your-environment",
     partnerId: "NODEMAN",
     authKey:"test123",
-    loggingEnabled:true,
-    app:
+    loggingEnabled:"true",
+    app:app
   });
-  app.use(ShortloopSDK.capture());
-  logger.info('ShortloopSDK initialized successfully');
+  app.use(ApiMonitorSDK.capture());
+  logger.info('ApiMonitorSDK initialized successfully');
 } catch (error) {
-  logger.error(`ShortloopSDK initialization failed: ${error}`);
+  logger.error(`ApiMonitorSDK initialization failed: ${error}`);
 }
 
 app.get('/', (req, res) => {
-  res.send('Hello, world!');
+  res.send('Hello, world1!');
 });
+app.get('/2', (req, res) => {
+  res.send('Hello, world2!');
+});
+
+
+app.get('/greet/:name', (req, res) => {
+  const name = req.params.name; // Path variable
+  const title = req.query.title; // Query parameter, e.g., ?title=Mr.
+
+  let greeting = `Hello, ${name}`;
+
+  if (title) {
+      greeting = `Hello, ${title} ${name}`;
+  }
+
+  res.send(greeting);
+});
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

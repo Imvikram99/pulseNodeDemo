@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 31,
+            "activePatchIndex": 49,
             "patches": [
                 {
                     "date": 1694283343302,
@@ -132,6 +132,78 @@
                 {
                     "date": 1699870774231,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n const express = require('express');\n-const { ApiMonitorSDK } = require('npm i apipulse-node');\n+const { ApiMonitorSDK } = require('apipulse-node');\n  // Importing your local npm package\n const winston = require('winston'); // For logging\n \n // Initialize winston logger\n@@ -42,8 +42,22 @@\n app.get('/2', (req, res) => {\n   res.send('Hello, world2!');\n });\n \n+app.get('/greet/:name', (req, res) => {\n+  const name = req.params.name; // Path variable\n+  const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n+\n+  let greeting = `Hello, ${name}`;\n+\n+  if (title) {\n+      greeting = `Hello, ${title} ${name}`;\n+  }\n+\n+  res.send(greeting);\n+});\n+\n+\n const PORT = process.env.PORT || 3001;\n app.listen(PORT, () => {\n   console.log(`Server is running on port ${PORT}`);\n });\n"
+                },
+                {
+                    "date": 1701712409319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n // Initialize your local npm package\n try {\n   ApiMonitorSDK.init({\n-    url: \"http://localhost:8080\",\n+    url: \"http://ec2-52-66-147-130.ap-south-1.compute.amazonaws.com:8080\",\n     applicationName: \"service-name3\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n"
+                },
+                {
+                    "date": 1701712535732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n // Initialize your local npm package\n try {\n   ApiMonitorSDK.init({\n-    url: \"http://ec2-52-66-147-130.ap-south-1.compute.amazonaws.com:8080\",\n+    url: \"http://\",\n     applicationName: \"service-name3\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n"
+                },
+                {
+                    "date": 1701712545260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n // Initialize your local npm package\n try {\n   ApiMonitorSDK.init({\n-    url: \"http://\",\n+    url: \"http://lb1.apipulse.dev\",\n     applicationName: \"service-name3\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n"
+                },
+                {
+                    "date": 1701712600112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n // Initialize your local npm package\n try {\n   ApiMonitorSDK.init({\n-    url: \"http://lb1.apipulse.dev\",\n+    url: \"http://ec2-52-66-147-130.ap-south-1.compute.amazonaws.com:8080\",\n     applicationName: \"service-name3\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n"
+                },
+                {
+                    "date": 1701712644478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n // Initialize your local npm package\n try {\n   ApiMonitorSDK.init({\n-    url: \"http://ec2-52-66-147-130.ap-south-1.compute.amazonaws.com:8080\",\n+    url: \"https://alb-test1-1116885660.ap-south-1.elb.amazonaws.com\",\n     applicationName: \"service-name3\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n"
+                },
+                {
+                    "date": 1701713922297,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n // Initialize your local npm package\n try {\n   ApiMonitorSDK.init({\n-    url: \"https://alb-test1-1116885660.ap-south-1.elb.amazonaws.com\",\n+    url: \"http://alb-test1-1116885660.ap-south-1.elb.amazonaws.com\",\n     applicationName: \"service-name3\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n"
+                },
+                {
+                    "date": 1701713989947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n // Initialize your local npm package\n try {\n   ApiMonitorSDK.init({\n-    url: \"http://alb-test1-1116885660.ap-south-1.elb.amazonaws.com\",\n+    url: \"http://alb-test1-1116885660.ap-south-1.elb.amazonaws.com:8080\",\n     applicationName: \"service-name3\",\n     teamName:\"team1\",\n     environment: \"your-environment\",\n     partnerId: \"NODEMAN\",\n"
+                },
+                {
+                    "date": 1704440121884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n app.get('/2', (req, res) => {\n   res.send('Hello, world2!');\n });\n \n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440135827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,10 +41,34 @@\n });\n app.get('/2', (req, res) => {\n   res.send('Hello, world2!');\n });\n+const users = new Map();\n+const products = new Map();\n+const transactions = new Map();\n \n+let userIdCounter = 0;\n+let productIdCounter = 0;\n+let transactionIdCounter = 0;\n \n+const usernameToIdMap = new Map();\n+const productNameToIdMap = new Map();\n+\n+app.post('/ecommerce/user/register', (req, res) => {\n+  const user = req.body;\n+  if (usernameToIdMap.has(user.name)) {\n+      return res.status(400).json({ error: 'Username already exists' });\n+  }\n+\n+  const userId = ++userIdCounter;\n+  user.id = userId;\n+  users.set(userId, user);\n+  usernameToIdMap.set(user.name, userId);\n+\n+  res.json({ userId: userId });\n+});\n+\n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440142979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,10 +65,23 @@\n   usernameToIdMap.set(user.name, userId);\n \n   res.json({ userId: userId });\n });\n+app.post('/ecommerce/product/add', (req, res) => {\n+  const product = req.body;\n+  if (productNameToIdMap.has(product.name)) {\n+      return res.status(400).json({ error: 'Product name already exists' });\n+  }\n \n+  const productId = ++productIdCounter;\n+  product.id = productId;\n+  products.set(productId, product);\n+  productNameToIdMap.set(product.name, productId);\n \n+  res.json({ productId: productId });\n+});\n+\n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440150888,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,24 @@\n \n   res.json({ productId: productId });\n });\n \n+app.post('/ecommerce/transaction/deposit', (req, res) => {\n+  const { userId, amount } = req.body;\n+  const user = users.get(userId);\n+  if (!user) {\n+      return res.status(404).send('User not found');\n+  }\n \n+  user.balance = (user.balance || 0) + amount;\n+  const transactionId = ++transactionIdCounter;\n+  const transaction = { id: transactionId, userId, amount, type: 'DEPOSIT' };\n+  transactions.set(transactionId, transaction);\n+\n+  res.json({ txnId: transactionId, updatedBalance: user.balance });\n+});\n+\n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440200090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,28 @@\n \n   res.json({ txnId: transactionId, updatedBalance: user.balance });\n });\n \n+app.post('/ecommerce/transaction/withdraw', (req, res) => {\n+  const { userId, amount } = req.body;\n+  const user = users.get(userId);\n+  if (!user) {\n+      return res.status(404).send('User not found');\n+  }\n+  if (user.balance < amount) {\n+      return res.status(400).send('Insufficient balance');\n+  }\n \n+  user.balance -= amount;\n+  const transactionId = ++transactionIdCounter;\n+  const transaction = { id: transactionId, userId, amount, type: 'WITHDRAW' };\n+  transactions.set(transactionId, transaction);\n+\n+  res.json({ txnId: transactionId, updatedBalance: user.balance });\n+});\n+\n+\n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440208314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -112,10 +112,26 @@\n \n   res.json({ txnId: transactionId, updatedBalance: user.balance });\n });\n \n+app.put('/ecommerce/user/update/:userId', (req, res) => {\n+  const userId = parseInt(req.params.userId);\n+  const updatedUser = req.body;\n \n+  if (!users.has(userId)) {\n+      return res.status(404).send('User not found');\n+  }\n \n+  const user = users.get(userId);\n+  user.name = updatedUser.name;\n+  user.balance = updatedUser.balance;\n+  users.set(userId, user);\n+\n+  res.json(user);\n+});\n+\n+\n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440214372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -128,10 +128,21 @@\n \n   res.json(user);\n });\n \n+app.delete('/ecommerce/user/delete/:userId', (req, res) => {\n+  const userId = parseInt(req.params.userId);\n+  \n+  if (!users.has(userId)) {\n+      return res.status(404).send('User not found');\n+  }\n \n+  users.delete(userId);\n+  res.send('User deleted successfully');\n+});\n \n+\n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440224847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -139,10 +139,36 @@\n   users.delete(userId);\n   res.send('User deleted successfully');\n });\n \n+app.put('/ecommerce/product/update/:productId', (req, res) => {\n+  const productId = parseInt(req.params.productId);\n+  const updatedProduct = req.body;\n \n+  if (!products.has(productId)) {\n+      return res.status(404).send('Product not found');\n+  }\n \n+  const product = products.get(productId);\n+  product.name = updatedProduct.name;\n+  product.price = updatedProduct.price;\n+  products.set(productId, product);\n+\n+  res.json(product);\n+});\n+\n+app.delete('/ecommerce/product/delete/:productId', (req, res) => {\n+  const productId = parseInt(req.params.productId);\n+  \n+  if (!products.has(productId)) {\n+      return res.status(404).send('Product not found');\n+  }\n+\n+  products.delete(productId);\n+  res.send('Product deleted successfully');\n+});\n+\n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440232223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -166,9 +166,21 @@\n   products.delete(productId);\n   res.send('Product deleted successfully');\n });\n \n+app.get('/ecommerce/user/:userId', (req, res) => {\n+  const userId = parseInt(req.params.userId);\n+  const user = users.get(userId);\n \n+  if (!user) {\n+      return res.status(404).send('User not found');\n+  }\n+\n+  res.json(user);\n+});\n+\n+\n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440243262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -177,10 +177,25 @@\n \n   res.json(user);\n });\n \n+app.get('/ecommerce/users', (req, res) => {\n+  res.json(Array.from(users.values()));\n+});\n \n+app.get('/ecommerce/product/:productId', (req, res) => {\n+  const productId = parseInt(req.params.productId);\n+  const product = products.get(productId);\n \n+  if (!product) {\n+      return res.status(404).send('Product not found');\n+  }\n+\n+  res.json(product);\n+});\n+\n+\n+\n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n   const title = req.query.title; // Query parameter, e.g., ?title=Mr.\n \n"
+                },
+                {
+                    "date": 1704440248383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -192,8 +192,11 @@\n \n   res.json(product);\n });\n \n+app.get('/ecommerce/products', (req, res) => {\n+  res.json(Array.from(products.values()));\n+});\n \n \n app.get('/greet/:name', (req, res) => {\n   const name = req.params.name; // Path variable\n"
                 }
             ],
             "date": 1694283343302,

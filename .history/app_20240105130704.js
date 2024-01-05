@@ -167,36 +167,6 @@ app.delete('/ecommerce/product/delete/:productId', (req, res) => {
   res.send('Product deleted successfully');
 });
 
-app.get('/ecommerce/user/:userId', (req, res) => {
-  const userId = parseInt(req.params.userId);
-  const user = users.get(userId);
-
-  if (!user) {
-      return res.status(404).send('User not found');
-  }
-
-  res.json(user);
-});
-
-app.get('/ecommerce/users', (req, res) => {
-  res.json(Array.from(users.values()));
-});
-
-app.get('/ecommerce/product/:productId', (req, res) => {
-  const productId = parseInt(req.params.productId);
-  const product = products.get(productId);
-
-  if (!product) {
-      return res.status(404).send('Product not found');
-  }
-
-  res.json(product);
-});
-
-app.get('/ecommerce/products', (req, res) => {
-  res.json(Array.from(products.values()));
-});
-
 
 app.get('/greet/:name', (req, res) => {
   const name = req.params.name; // Path variable

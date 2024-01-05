@@ -140,62 +140,6 @@ app.delete('/ecommerce/user/delete/:userId', (req, res) => {
   res.send('User deleted successfully');
 });
 
-app.put('/ecommerce/product/update/:productId', (req, res) => {
-  const productId = parseInt(req.params.productId);
-  const updatedProduct = req.body;
-
-  if (!products.has(productId)) {
-      return res.status(404).send('Product not found');
-  }
-
-  const product = products.get(productId);
-  product.name = updatedProduct.name;
-  product.price = updatedProduct.price;
-  products.set(productId, product);
-
-  res.json(product);
-});
-
-app.delete('/ecommerce/product/delete/:productId', (req, res) => {
-  const productId = parseInt(req.params.productId);
-  
-  if (!products.has(productId)) {
-      return res.status(404).send('Product not found');
-  }
-
-  products.delete(productId);
-  res.send('Product deleted successfully');
-});
-
-app.get('/ecommerce/user/:userId', (req, res) => {
-  const userId = parseInt(req.params.userId);
-  const user = users.get(userId);
-
-  if (!user) {
-      return res.status(404).send('User not found');
-  }
-
-  res.json(user);
-});
-
-app.get('/ecommerce/users', (req, res) => {
-  res.json(Array.from(users.values()));
-});
-
-app.get('/ecommerce/product/:productId', (req, res) => {
-  const productId = parseInt(req.params.productId);
-  const product = products.get(productId);
-
-  if (!product) {
-      return res.status(404).send('Product not found');
-  }
-
-  res.json(product);
-});
-
-app.get('/ecommerce/products', (req, res) => {
-  res.json(Array.from(products.values()));
-});
 
 
 app.get('/greet/:name', (req, res) => {

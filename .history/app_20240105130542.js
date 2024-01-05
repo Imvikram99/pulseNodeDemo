@@ -21,7 +21,7 @@ app.use(express.text());
 // Initialize your local npm package
 try {
   ApiMonitorSDK.init({
-    url: "http://localhost:8080",
+    url: "http://alb-test1-1116885660.ap-south-1.elb.amazonaws.com:8080",
     applicationName: "service-name3",
     teamName:"team1",
     environment: "your-environment",
@@ -42,6 +42,44 @@ app.get('/', (req, res) => {
 app.get('/2', (req, res) => {
   res.send('Hello, world2!');
 });
+const users = new Map();
+const products = new Map();
+const transactions = new Map();
+
+let userIdCounter = 0;
+let productIdCounter = 0;
+let transactionIdCounter = 0;
+
+const usernameToIdMap = new Map();
+const productNameToIdMap = new Map();
+
+app.post('/ecommerce/user/register', (req, res) => {
+  const user = req.body;
+  if (usernameToIdMap.has(user.name)) {
+      return res.status(400).json({ error: 'Username already exists' });
+  }
+
+  const userId = ++userIdCounter;
+  user.id = userId;
+  users.set(userId, user);
+  usernameToIdMap.set(user.name, userId);
+
+  res.json({ userId: userId });
+});
+app.post('/ecommerce/product/add', (req, res) => {
+  const product = req.body;
+  if (productNameToIdMap.has(product.name)) {
+      return res.status(400).json({ error: 'Product name already exists' });
+  }
+
+  const productId = ++productIdCounter;
+  product.id = productId;
+  products.set(productId, product);
+  productNameToIdMap.set(product.name, productId);
+
+  res.json({ productId: productId });
+});
+
 
 app.get('/greet/:name', (req, res) => {
   const name = req.params.name; // Path variable

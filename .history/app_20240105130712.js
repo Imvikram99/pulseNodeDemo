@@ -178,24 +178,6 @@ app.get('/ecommerce/user/:userId', (req, res) => {
   res.json(user);
 });
 
-app.get('/ecommerce/users', (req, res) => {
-  res.json(Array.from(users.values()));
-});
-
-app.get('/ecommerce/product/:productId', (req, res) => {
-  const productId = parseInt(req.params.productId);
-  const product = products.get(productId);
-
-  if (!product) {
-      return res.status(404).send('Product not found');
-  }
-
-  res.json(product);
-});
-
-app.get('/ecommerce/products', (req, res) => {
-  res.json(Array.from(products.values()));
-});
 
 
 app.get('/greet/:name', (req, res) => {
